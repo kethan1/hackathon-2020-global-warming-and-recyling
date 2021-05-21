@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="./static/styles.css">
+    <link rel="shortcut icon" type="image/x-icon" href="./static/favicon.png">
+    <title>Neighborhood Recycling</title>
+</head>
+<body>
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <script type="text/javascript">
+                    M.toast({html: '<span>{{ message }}</span><button class="btn-flat toast-action" style="color: white;" onclick="M.Toast.dismissAll();">X</button>', classes: 'rounded'})
+                </script>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <h1 style="font-size:37px" class="text-font flow-text redheader">Search For An Item</h1>
+    <br>
+    <div class="row">
+        <div class="m12 l12 show-on-medium-and-up hide-on-small-only">
+            <div style="text-align:center; float: right; padding-right: 1vw">
+                <a href="/" class="waves-effect waves-light btn text-font">Home</a>
+                <a href="/add" class="waves-effect waves-light btn text-font">Donate an Item</a>
+                <a href="/search" class="waves-effect waves-light btn text-font">Search for Items</a>
+            </div>
+        </div>
+        <div class="s12 show-on-small hide-on-med-and-up">
+            <div style="text-align:center;">
+                <a href="/" class="waves-effect waves-light btn text-font">Home</a>
+                <a href="/add" class="waves-effect waves-light btn text-font">Donate an Item</a>
+                <a href="/search" class="waves-effect waves-light btn text-font">Search for Items</a>
+            </div>
+        </div>
+    </div>
+    <form method="POST">
+        <div style="display: flex; flex-wrap: wrap;">
+            {% for product in products %}
+                <a href="/buy/{{ product['_id'] }}" style="color: black;">
+                    <div class="boxdiv z-depth-3">
+                        {% for img in product['files_uploaded'] %}
+                            <div style="max-width: 25vw">
+                                <img style="width: 100%" src="{{ get_image(img) }}">
+                            </div>
+                        {% endfor %}
+                        <p style="font-size: 2.5vw; margin-left: 7%;" class="text-font">{{ product['title'] }}</p>
+                        <div style="max-width: 50vw;">
+                            <p class="text-font" style="margin-left: 7%; word-wrap: normal; font-size: 1.25vw">{{ product['description'] }}</p>
+                        </div>
+                        <p style="font-size: 1.5vw; margin-left: 7%;" class="text-font">{{ product['height'] }} inches x {{ product['width'] }} inches x {{ product['length'] }} inches</p>
+                        <br>
+                        <br>
+                    </div>
+                </a>
+            {% else %}
+                <p style="margin-right: auto; margin-left: auto;" class="text-font flow-text">No Stock</p>
+            {% endfor %}
+        </div>
+        <br>
+        <br>
+    </form>
+    <br>
+    <br>
+    <br>
+</body>
+</html>

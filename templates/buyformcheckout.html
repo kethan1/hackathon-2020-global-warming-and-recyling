@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles.css') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="./static/favicon.png">
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <title>Neighborhood Recycling</title>
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <script type="text/javascript">
+                    M.toast({html: '<span>{{ message }}</span><button class="btn-flat toast-action" style="color: white;" onclick="M.Toast.dismissAll();">X</button>', classes: 'rounded'})
+                </script>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <h1 style="font-size:37px" class="text-font flow-text redheader">Buy a Product</h1>
+    <br>
+    <div class="row">
+        <div class="m12 l12 show-on-medium-and-up hide-on-small-only">
+            <div style="text-align:center; float: right; padding-right: 1vw">
+                <a href="/" class="waves-effect waves-light btn text-font">Home</a>
+                <a href="/add" class="waves-effect waves-light btn text-font">Donate an Item</a>
+                <a href="/search" class="waves-effect waves-light btn text-font">Search for Items</a>
+            </div>
+        </div>
+        <div class="s12 show-on-small hide-on-med-and-up">
+            <div style="text-align:center;">
+                <a href="/" class="waves-effect waves-light btn text-font">Home</a>
+                <a href="/add" class="waves-effect waves-light btn text-font">Donate an Item</a>
+                <a href="/search" class="waves-effect waves-light btn text-font">Search for Items</a>
+            </div>
+        </div>
+    </div>
+    <form class="container" method="POST" enctype="multipart/form-data">
+        <div class="input-field">
+          <i class="material-icons prefix">account_circle</i>
+          <input name="name" id="full_name" type="text" class="validate">
+          <label for="full_name">Full Name</label>
+        </div>
+        <div class="input-field">
+          <i class="material-icons prefix">account_circle</i>
+          <input name="address" id="address" type="text" class="validate">
+          <label for="address">Address</label>
+        </div>
+        <div style="margin:0 auto;width: 304px;">
+            <div class="g-recaptcha" data-sitekey="{{ CLIENT_CAPTCHA_KEY }}"></div>
+        </div>
+        <button class="waves-effect waves-light btn text-font" type="submit">Buy</button>
+        <button class="waves-effect waves-light btn text-font" type="reset">Clear</button>
+        <br>
+    </form>
+    <br>
+    <br>
+</body>
+</html>

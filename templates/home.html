@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="./static/styles.css">
+    <link rel="shortcut icon" type="image/x-icon" href="./static/favicon.png">
+    <title>Neighborhood Recycling</title>
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <script type="text/javascript">
+                    M.toast({html: '<span>{{ message }}</span><button class="btn-flat toast-action" style="color: white;" onclick="M.Toast.dismissAll();">X</button>', classes: 'orange darken-1 rounded'})
+                </script>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <h1 style="font-size:37px" class="text-font flow-text redheader">Welcome to Neighborhood Recyling</h1>
+
+    <br>
+    <div class="row">
+        <div class="m12 l12 show-on-medium-and-up hide-on-small-only">
+            <div style="text-align:center; float: right; padding-right: 1vw">
+                <a href="/" class="waves-effect waves-light btn text-font">Home</a>
+                <a href="/add" class="waves-effect waves-light btn text-font">Donate an Item</a>
+                <a href="/search" class="waves-effect waves-light btn text-font">Search for Items</a>
+            </div>
+        </div>
+        <div class="s12 show-on-small hide-on-med-and-up">
+            <div style="text-align:center;">
+                <a href="/" class="waves-effect waves-light btn text-font">Home</a>
+                <a href="/add" class="waves-effect waves-light btn text-font">Donate an Item</a>
+                <a href="/search" class="waves-effect waves-light btn text-font">Search for Items</a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <p style="text-align: center;" class="flow-text">
+            Global warming today is mainly caused by the accumulation of greenhouse gases in the atmosphere,
+            one of these being extensive carbon dioxide emissions from the continuous production of
+            plastics, synthetic fabrics, and other materials. People today often buy items without
+            full usage of the products, resulting in a wastage of the materials previously stated.
+            For this reason, the donation of unused or only very slightly used items to others would
+            significantly reduce material production, and thereby lower carbon emissions into the
+            atmosphere. This website aims to organize a system through which people can donate and buy
+            items free of cost.
+        </p>
+    </div>
+</body>
+</html>

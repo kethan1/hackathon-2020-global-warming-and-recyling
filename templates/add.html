@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="./static/styles.css">
+    <link rel="shortcut icon" type="image/x-icon" href="./static/favicon.png">
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <title>Neighborhood Recycling</title>
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <script type="text/javascript">
+                    M.toast({html: '<span>{{ message }}</span><button class="btn-flat toast-action" style="color: white;" onclick="M.Toast.dismissAll();">X</button>', classes: 'rounded'})
+                </script>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <h1 style="font-size:37px" class="text-font flow-text redheader">Donate a Product</h1>
+    <br>
+    <div class="row">
+        <div class="m12 l12 show-on-medium-and-up hide-on-small-only">
+            <div style="text-align:center; float: right; padding-right: 1vw">
+                <a href="/" class="waves-effect waves-light btn text-font">Home</a>
+                <a href="/add" class="waves-effect waves-light btn text-font">Donate an Item</a>
+                <a href="/search" class="waves-effect waves-light btn text-font">Search for Items</a>
+            </div>
+        </div>
+        <div class="s12 show-on-small hide-on-med-and-up">
+            <div style="text-align:center;">
+                <a href="/" class="waves-effect waves-light btn text-font">Home</a>
+                <a href="/add" class="waves-effect waves-light btn text-font">Donate an Item</a>
+                <a href="/search" class="waves-effect waves-light btn text-font">Search for Items</a>
+            </div>
+        </div>
+    </div>
+    <form class="container" action="/add" method="POST" enctype="multipart/form-data">
+        <div class="input-field">
+          <i class="material-icons prefix">account_circle</i>
+          <input name="name" id="full_name" type="text" class="validate">
+          <label for="full_name">Full Name</label>
+        </div>
+        <div class="input-field">
+          <i class="material-icons prefix">account_circle</i>
+          <input name="address" id="address" type="text" class="validate">
+          <label for="address">Address</label>
+        </div>
+        <div class="input-field">
+          <i class="material-icons prefix">account_circle</i>
+          <input name="title" id="title" type="text" class="validate">
+          <label for="title">Item Name</label>
+        </div>
+        <div class="input-field">
+          <i class="material-icons prefix">account_circle</i>
+          <input name="description" id="description" type="text" class="validate">
+          <label for="description">Item Description</label>
+        </div>
+        <span>Dimensions</span>
+        <br>
+        <div class="flow-text">
+            <div style="display: inline-block;" class="input-field">
+              <input name="length" id="x" type="text" class="validate">
+              <label for="x">Length</label>
+            </div>
+            <span style="font-size: 15px" class="flow-text">inches&nbsp;&nbsp;</span><span>x</span>
+            <div style="display: inline-block;" class="input-field">
+              <input name="height" id="y" type="text" class="validate">
+              <label for="y">Height</label>
+            </div>
+            <span style="font-size: 15px" class="flow-text">inches&nbsp;&nbsp;</span><span>x</span>
+            <div style="display: inline-block;" class="input-field">
+              <input name="width" id="z" type="text" class="validate">
+              <label for="z">Width</label>
+            </div>
+            <span style="font-size: 15px" class="flow-text">inches&nbsp;&nbsp;</span>
+        </div>
+        <div class="file-field input-field">
+          <div class="btn text-font">
+              <span>Images</span>
+              <input name="images" type="file" multiple required>
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text" placeholder="Upload one or more files">
+          </div>
+        </div>
+        <div style="margin:0 auto;width: 304px;">
+            <div class="g-recaptcha" data-sitekey="6LdGNrYZAAAAAI5PYVBoGGQURFfaayjyxp4K_UNH"></div>
+        </div>
+        <button class="waves-effect waves-light btn text-font" type="submit">Donate Item</button>
+        <button class="waves-effect waves-light btn text-font" type="reset">Clear</button>
+        <br>
+    </form>
+    <br>
+    <br>
+</body>
+</html>
